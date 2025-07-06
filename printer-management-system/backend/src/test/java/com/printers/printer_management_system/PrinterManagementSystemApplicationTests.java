@@ -1,4 +1,4 @@
-package com.printers.printer_management_system;
+package com.printers.printerManagementSystem;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

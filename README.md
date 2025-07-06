@@ -1,4 +1,5 @@
 ## Arquitetura do projeto
+
 ```bash
 📂 printer-management-system/
     L 📂 backend/
@@ -7,7 +8,7 @@
                 L 📂 java/
                     L 📂 com/
                         L 📂 printers/
-                            L 📂 printer_management_system/
+                            L 📂 printerManagementSystem/
                                 L 📂 controller/
                                 L 📂 model/
                                     L PrinterRepository.java

@@ -1,13 +1,12 @@
-package com.printers.printer_management_system.controller;
+package com.printers.printerManagementSystem.controller;
 
-import com.printers.printer_management_system.model.Printer;
-import com.printers.printer_management_system.service.PrinterService;
+import com.printers.printerManagementSystem.model.Printer;
+import com.printers.printerManagementSystem.service.PrinterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
-
 
 @RestController
 @RequestMapping("/api/v1/printers")

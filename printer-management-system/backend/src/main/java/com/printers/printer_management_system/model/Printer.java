@@ -1,8 +1,7 @@
-package com.printers.printer_management_system.model;
+package com.printers.printerManagementSystem.model;
 
 import jakarta.persistence.*;
 import java.util.UUID;
-
 
 @Entity
 public class Printer {

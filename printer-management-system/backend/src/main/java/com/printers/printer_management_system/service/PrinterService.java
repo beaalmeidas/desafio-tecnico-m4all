@@ -1,13 +1,12 @@
-package com.printers.printer_management_system.service;
+package com.printers.printerManagementSystem.service;
 
-import com.printers.printer_management_system.model.Printer;
-import com.printers.printer_management_system.repository.PrinterRepository;
+import com.printers.printerManagementSystem.model.Printer;
+import com.printers.printerManagementSystem.repository.PrinterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
-
 
 @Service
 public class PrinterService {
