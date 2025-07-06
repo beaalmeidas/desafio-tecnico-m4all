@@ -17,7 +17,7 @@ import java.util.UUID;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/printers")
+@RequestMapping("/api/v1/printers")
 public class PrinterController {
     @Autowired
     private PrinterService printerService;
