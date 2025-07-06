@@ -22,19 +22,17 @@ export default function PrinterList() {
   }, [])
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="p-6 max-w-4xl mx-auto font-sans">
       <h1 className="text-4xl font-extrabold mb-8 text-primary">
         Todos os Dispositivos
       </h1>
 
       {/* NAVEGAÇÃO */}
       <div className="flex justify-end mb-8">
-        <Link href="/register" legacyBehavior>
-          <a>
-            <Button>
-              Cadastrar Impressora
-            </Button>
-          </a>
+        <Link href="/register">
+          <Button>
+            Cadastrar Impressora
+          </Button>
         </Link>
       </div>
 
@@ -58,10 +56,11 @@ export default function PrinterList() {
             <div>
               <strong className="text-lg">{p.name}</strong> — <span className={`font-semibold ${p.status === 'ONLINE' ? 'text-success' : 'text-danger'}`}>{p.status}</span>
             </div>
-            <Link href={`/printers/${p.id}`} legacyBehavior>
-              <a className="text-primary hover:underline font-medium">
-                Ver detalhes
-              </a>
+            <Link
+              href={`/printers/${p.id}`}
+              className="text-primary hover:underline font-medium"
+            >
+              Ver detalhes
             </Link>
           </li>
         ))}
