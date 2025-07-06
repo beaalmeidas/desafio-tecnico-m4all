@@ -3,6 +3,8 @@ package com.printers.printerManagementSystem.service;
 import com.printers.printerManagementSystem.model.Printer;
 import com.printers.printerManagementSystem.repository.PrinterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -14,8 +16,8 @@ public class PrinterService {
     @Autowired
     private PrinterRepository printerRepository;
 
-    public List<Printer> getAllPrinters() {
-        return printerRepository.findAll();
+    public Page<Printer> getAllPrinters(Pageable pageable) {
+        return printerRepository.findAll(pageable);
     }
 
     public Printer getPrinterById(UUID id) {

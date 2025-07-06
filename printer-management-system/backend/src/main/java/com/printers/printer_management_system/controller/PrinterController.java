@@ -8,6 +8,9 @@ import com.printers.printerManagementSystem.dto.SyncStatisticsDTO;
 import com.printers.printerManagementSystem.service.PrinterSyncService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +26,13 @@ public class PrinterController {
     private PrinterService printerService;
 
     @GetMapping
-    public List<Printer> getAllPrinters() {
-        return printerService.getAllPrinters();
+    public ResponseEntity<Page<Printer>> getAllPrinters(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Printer> printersPage = printerService.getAllPrinters(pageable);
+        return ResponseEntity.ok(printersPage);
     }
 
     @GetMapping("/{id}")
