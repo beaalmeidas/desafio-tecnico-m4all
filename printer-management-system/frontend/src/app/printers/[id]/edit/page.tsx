@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+import Link from 'next/link'
+import Button from "@/components/Button"
 
 export default function EditPrinter() {
   const { id } = useParams()
@@ -43,26 +45,68 @@ export default function EditPrinter() {
   }
 
   return (
-    <div className="p-6 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Editar Impressora</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input name="name" value={form.name} onChange={handleChange} className="w-full border p-2" />
-        <input name="model" value={form.model} onChange={handleChange} className="w-full border p-2" />
-        <input name="location" value={form.location} onChange={handleChange} className="w-full border p-2" />
-        <select name="status" value={form.status} onChange={handleChange} className="w-full border p-2">
-          <option value="ONLINE">ONLINE</option>
-          <option value="OFFLINE">OFFLINE</option>
-          <option value="MAINTENANCE">MAINTENANCE</option>
-        </select>
-        <input
-          type="number"
-          name="paperCapacity"
-          value={form.paperCapacity}
-          onChange={handleChange}
-          className="w-full border p-2"
-        />
-        <button className="bg-blue-600 text-white w-full p-2 rounded">Salvar</button>
-      </form>
+    <div className="min-h-screen flex items-center justify-center py-12" style={{ backgroundColor: '#EB3C7D' }}>
+      <div className="bg-white border border-primary rounded-2xl p-8 w-full max-w-md shadow-lg">
+        <h1 className="text-4xl font-bold mb-6 text-primary text-center">
+          Editar Impressora
+        </h1>
+
+        {/* FORMULÁRIO DE EDIÇÃO */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            className="w-full border p-2 rounded"
+            placeholder="Nome"
+          />
+          <input
+            name="model"
+            value={form.model}
+            onChange={handleChange}
+            className="w-full border p-2 rounded"
+            placeholder="Modelo"
+          />
+          <input
+            name="location"
+            value={form.location}
+            onChange={handleChange}
+            className="w-full border p-2 rounded"
+            placeholder="Localização"
+          />
+          <select
+            name="status"
+            value={form.status}
+            onChange={handleChange}
+            className="w-full border p-2 rounded"
+          >
+            <option value="ONLINE">ONLINE</option>
+            <option value="OFFLINE">OFFLINE</option>
+            <option value="MAINTENANCE">MANUTENÇÃO</option>
+          </select>
+          <input
+            type="number"
+            name="paperCapacity"
+            value={form.paperCapacity}
+            onChange={handleChange}
+            className="w-full border p-2 rounded"
+            placeholder="Capacidade de papel"
+          />
+
+          {/* BOTÕES */}
+          <div className="flex gap-4 pt-2">
+            <Button type="submit" className="flex-1">
+              Salvar
+            </Button>
+
+            <Link href="/">
+              <Button className="bg-gray-300 text-black hover:bg-gray-400 flex-1">
+                Voltar para a lista
+              </Button>
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }
