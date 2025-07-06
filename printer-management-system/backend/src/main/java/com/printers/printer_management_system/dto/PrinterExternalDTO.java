@@ -1,24 +1,18 @@
-package com.printers.printerManagementSystem.model;
+package com.printers.printerManagementSystem.dto;
 
-import jakarta.persistence.*;
+import com.printers.printerManagementSystem.model.PrinterStatus;
+
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
 
-@Entity
-public class Printer {
-    @Id
+public class PrinterExternalDTO {
     private UUID id;
-
     private String name;
     private String model;
     private String location;
-
-    @Enumerated(EnumType.STRING)
     private PrinterStatus status;
-
     private Integer paperCapacity;
-
     private OffsetDateTime createdAt;
 
     public UUID getId() {

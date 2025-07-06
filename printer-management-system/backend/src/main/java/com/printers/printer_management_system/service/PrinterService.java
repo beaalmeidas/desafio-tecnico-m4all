@@ -29,9 +29,9 @@ public class PrinterService {
     public Printer updatePrinter(UUID id, Printer printerDetails) {
         Printer existing = getPrinterById(id);
 
-        existing.setNome(printerDetails.getNome());
-        existing.setModelo(printerDetails.getModelo());
-        existing.setLocalizacao(printerDetails.getLocalizacao());
+        existing.setName(printerDetails.getName());
+        existing.setModel(printerDetails.getModel());
+        existing.setLocation(printerDetails.getLocation());
         existing.setStatus(printerDetails.getStatus());
 
         return printerRepository.save(existing);
