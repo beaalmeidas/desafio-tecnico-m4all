@@ -3,6 +3,7 @@ package com.printers.printerManagementSystem.model;
 import jakarta.persistence.*;
 import java.util.UUID;
 
+
 @Entity
 public class Printer {
     @Id
@@ -12,7 +13,9 @@ public class Printer {
     private String nome;
     private String modelo;
     private String localizacao;
-    private String status;
+
+    @Enumerated(EnumType.STRING)
+    private PrinterStatus status;
 
     public UUID getId() {
         return id;
@@ -46,11 +49,11 @@ public class Printer {
         this.localizacao = localizacao;
     }
 
-    public String getStatus() {
+    public PrinterStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(PrinterStatus status) {
         this.status = status;
     }
 }

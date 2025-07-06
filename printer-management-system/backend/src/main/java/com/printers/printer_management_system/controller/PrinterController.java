@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+
 @RestController
-@RequestMapping("/api/v1/printers")
+@RequestMapping("/api/printers")
 public class PrinterController {
     @Autowired
     private PrinterService printerService;
