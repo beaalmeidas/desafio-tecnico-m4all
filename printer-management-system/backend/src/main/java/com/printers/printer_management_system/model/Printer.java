@@ -8,6 +8,7 @@ import java.util.UUID;
 @Entity
 public class Printer {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     private String name;

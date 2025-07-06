@@ -5,6 +5,7 @@ import com.printers.printerManagementSystem.repository.PrinterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,6 +24,7 @@ public class PrinterService {
     }
 
     public Printer createPrinter(Printer printer) {
+        printer.setCreatedAt(OffsetDateTime.now());
         return printerRepository.save(printer);
     }
 
