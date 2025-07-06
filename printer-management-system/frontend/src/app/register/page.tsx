@@ -23,7 +23,7 @@ export default function RegisterPrinter() {
     e.preventDefault()
 
     try {
-      const res = await fetch('http://localhost:8080/api/printers', {
+      const res = await fetch('http://localhost:8080/api/v1/printers', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

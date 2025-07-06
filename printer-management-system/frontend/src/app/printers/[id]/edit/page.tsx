@@ -15,7 +15,7 @@ export default function EditPrinter() {
   })
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/printers/${id}`)
+    fetch(`http://localhost:8080/api/v1/printers/${id}`)
       .then(res => res.json())
       .then(setForm)
       .catch(console.error)
@@ -28,7 +28,7 @@ export default function EditPrinter() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const res = await fetch(`http://localhost:8080/api/printers/${id}`, {
+    const res = await fetch(`http://localhost:8080/api/v1/printers/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(form),

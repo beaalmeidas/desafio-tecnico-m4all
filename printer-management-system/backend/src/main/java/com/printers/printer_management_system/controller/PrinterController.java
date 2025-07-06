@@ -22,9 +22,6 @@ public class PrinterController {
     @Autowired
     private PrinterService printerService;
 
-    @Autowired
-    private PrinterSyncService printerSyncService;
-
     @GetMapping
     public List<Printer> getAllPrinters() {
         return printerService.getAllPrinters();
@@ -60,10 +57,5 @@ public class PrinterController {
             printer.getPaperCapacity()
         );
         return ResponseEntity.ok(dto);
-    }
-
-    @GetMapping("/sync/statistics")
-    public SyncStatisticsDTO getSyncStatistics() {
-        return printerSyncService.getLastSyncStats();
     }
 }
