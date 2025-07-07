@@ -32,6 +32,7 @@ Sistema de gestão de impressoras corporativas desenvolvido com abordagem fullst
 - Validação de formulários com Zod
 - Next.js
 - Maven
+- Docker
 
 ---
 
@@ -149,6 +150,22 @@ npm run dev
 ```
 
 A aplicação estará rodando na porta http://localhost:3000/
+
+### Docker
+#### Pré-requisito:
+- Docker e Docker Compose instalados
+  [Instalar Docker](https://docs.docker.com/get-docker/)  
+  [Instalar Docker Compose](https://docs.docker.com/compose/install/)
+
+#### Na raiz do projeto, rode:
+```bash
+docker-compose up --build
+```
+
+#### Estrutura dos containers no docker-compose:
+- backend: serviço do Spring Boot, buildado a partir da pasta /backend
+- frontend: serviço do Next.js, buildado a partir da pasta /frontend
+- db: container do MySQL, com volume para persistência de dados
 
 ---
 
