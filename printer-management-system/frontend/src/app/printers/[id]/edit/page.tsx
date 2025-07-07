@@ -3,7 +3,17 @@
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { z } from 'zod'
 import Button from "@/components/Button"
+
+
+const printerSchema = z.object({
+  name: z.string().min(1, "Nome é obrigatório"),
+  model: z.string().min(1, "Modelo é obrigatório"),
+  location: z.string().min(1, "Localização é obrigatória"),
+  status: z.enum(['ONLINE', 'OFFLINE', 'MAINTENANCE']),
+  paperCapacity: z.number().int().positive("Capacidade de papel deve ser um número positivo"),
+})
 
 export default function EditPrinter() {
   const { id } = useParams()
@@ -15,20 +25,39 @@ export default function EditPrinter() {
     status: 'ONLINE',
     paperCapacity: 100,
   })
+  const [errors, setErrors] = useState<{ [key: string]: string }>({})
 
   useEffect(() => {
     fetch(`http://localhost:8080/api/v1/printers/${id}`)
       .then(res => res.json())
-      .then(setForm)
+      .then(data => {
+        data.paperCapacity = Number(data.paperCapacity)
+        setForm(data)
+      })
       .catch(console.error)
   }, [id])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
+    const value = e.target.name === "paperCapacity" ? Number(e.target.value) : e.target.value
+    setForm({ ...form, [e.target.name]: value })
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    const validation = printerSchema.safeParse(form)
+
+    if (!validation.success) {
+      const fieldErrors: { [key: string]: string } = {}
+      validation.error.errors.forEach(err => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0] as string] = err.message
+        }
+      })
+      setErrors(fieldErrors)
+      return
+    }
+
+    setErrors({})
 
     const res = await fetch(`http://localhost:8080/api/v1/printers/${id}`, {
       method: 'PUT',
@@ -51,7 +80,6 @@ export default function EditPrinter() {
           Editar Impressora
         </h1>
 
-        {/* FORMULÁRIO DE EDIÇÃO */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             name="name"
@@ -60,6 +88,8 @@ export default function EditPrinter() {
             className="w-full border p-2 rounded"
             placeholder="Nome"
           />
+          {errors.name && <p className="text-red-600 text-sm">{errors.name}</p>}
+
           <input
             name="model"
             value={form.model}
@@ -67,6 +97,8 @@ export default function EditPrinter() {
             className="w-full border p-2 rounded"
             placeholder="Modelo"
           />
+          {errors.model && <p className="text-red-600 text-sm">{errors.model}</p>}
+
           <input
             name="location"
             value={form.location}
@@ -74,6 +106,8 @@ export default function EditPrinter() {
             className="w-full border p-2 rounded"
             placeholder="Localização"
           />
+          {errors.location && <p className="text-red-600 text-sm">{errors.location}</p>}
+
           <select
             name="status"
             value={form.status}
@@ -84,6 +118,8 @@ export default function EditPrinter() {
             <option value="OFFLINE">OFFLINE</option>
             <option value="MAINTENANCE">MANUTENÇÃO</option>
           </select>
+          {errors.status && <p className="text-red-600 text-sm">{errors.status}</p>}
+
           <input
             type="number"
             name="paperCapacity"
@@ -92,8 +128,8 @@ export default function EditPrinter() {
             className="w-full border p-2 rounded"
             placeholder="Capacidade de papel"
           />
+          {errors.paperCapacity && <p className="text-red-600 text-sm">{errors.paperCapacity}</p>}
 
-          {/* BOTÕES */}
           <div className="flex gap-4 pt-2">
             <Button type="submit" className="flex-1">
               Salvar

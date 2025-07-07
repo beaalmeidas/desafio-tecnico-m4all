@@ -3,8 +3,18 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-
+import { z } from 'zod'
 import Button from "@/components/Button"
+
+
+const printerSchema = z.object({
+  name: z.string().min(1, "Nome é obrigatório"),
+  model: z.string().min(1, "Modelo é obrigatório"),
+  location: z.string().min(1, "Localização é obrigatória"),
+  status: z.enum(['ONLINE', 'OFFLINE']),
+  paperCapacity: z.number().min(1, "Capacidade de papel deve ser maior que zero"),
+})
+
 
 export default function RegisterPrinter() {
   const router = useRouter()
@@ -18,17 +28,18 @@ export default function RegisterPrinter() {
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
+    const value = e.target.name === 'paperCapacity' ? Number(e.target.value) : e.target.value
+    setForm({ ...form, [e.target.name]: value })
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
     try {
+      const parsedForm = printerSchema.parse(form)
       const res = await fetch('http://localhost:8080/api/v1/printers', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify(parsedForm),
       })
 
       if (res.ok) {
@@ -38,8 +49,12 @@ export default function RegisterPrinter() {
         alert('Erro ao cadastrar impressora.')
       }
     } catch (err) {
-      console.error(err)
-      alert('Erro de conexão com o servidor.')
+      if (err instanceof z.ZodError) {
+        alert(err.errors.map(e => e.message).join(', '))
+      } else {
+        console.error(err)
+        alert('Erro de conexão com o servidor.')
+      }
     }
   }
 
@@ -50,7 +65,6 @@ export default function RegisterPrinter() {
           Nova Impressora
         </h1>
 
-        {/* FORMULÁRIO DE CADASTRO */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             name="name"
@@ -95,7 +109,6 @@ export default function RegisterPrinter() {
             required
           />
 
-          {/* BOTÕES */}
           <div className="flex gap-4 pt-2">
             <Button type="submit" className="flex-1">
               Cadastrar
