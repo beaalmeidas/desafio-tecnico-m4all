@@ -157,6 +157,12 @@ A aplicação estará rodando na porta http://localhost:3000/
   [Instalar Docker](https://docs.docker.com/get-docker/)  
   [Instalar Docker Compose](https://docs.docker.com/compose/install/)
 
+Após clonar o projeto, ir para a branch develop e pegar a diferença dela do repositório remoto:
+```bash
+git checkout -b develop
+git pull origin develop
+```
+
 #### Na raiz do projeto, rode:
 ```bash
 docker-compose up --build
