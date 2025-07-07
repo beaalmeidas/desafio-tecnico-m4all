@@ -149,6 +149,8 @@ npm install
 npm run dev
 ```
 
+A aplicação estará rodando na porta http://localhost:3000/
+
 ---
 
 ## Testes Postman
