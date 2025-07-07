@@ -32,6 +32,7 @@ Sistema de gestão de impressoras corporativas desenvolvido com abordagem fullst
 - Validação de formulários com Zod
 - Next.js
 - Maven
+- Docker (versão dockerizada na branch 'develop')
 
 ---
 
