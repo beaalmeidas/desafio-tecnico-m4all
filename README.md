@@ -213,4 +213,5 @@ Importe a coleção Postman disponibilizada para testar os endpoints da API.
 
 ## Créditos
 Beatriz Almeida de Souza Silva
+</br>
 Julho de 2025
