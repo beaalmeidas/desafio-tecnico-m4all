@@ -1,0 +1,310 @@
+{
+	"info": {
+		"_postman_id": "68bbb083-fd7a-44cc-a4cb-3a81573b0e6e",
+		"name": "CentralPrint-Testes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42563314"
+	},
+	"item": [
+		{
+			"name": "CADASTRO IMPRESSORA",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Impressora Exemplo\",\r\n  \"model\": \"HP LaserJet Pro M404dn\",\r\n  \"location\": \"Sala 101\",\r\n  \"status\": \"ONLINE\",\r\n  \"paperCapacity\": 250,\r\n  \"createdAt\": \"2025-07-06T14:30:00Z\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/printers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"printers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DETALHES IMPRESSORA",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/printers/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"printers",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LISTAGEM IMPRESSORAS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/printers?page=1&size=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"printers"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ATUALIZAR IMPRESSORA",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Impressora Exemplo Alterada\",\r\n  \"model\": \"HP LaserJet Pro M404dn\",\r\n  \"location\": \"Sala 102\",\r\n  \"status\": \"OFFLINE\",\r\n  \"paperCapacity\": 250,\r\n  \"createdAt\": \"2025-07-06T14:30:00Z\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/printers/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"printers",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETAR IMPRESSORA",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/printers/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"printers",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "STATUS IMPRESSORA",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/printers/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"printers",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ESTATÍSTICAS IMPRESSORAS",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/sync/statistics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"sync",
+						"statistics"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
